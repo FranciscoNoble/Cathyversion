@@ -234,7 +234,7 @@
         if(id(whereFrom).value == ""){
             id(whereTo).value == null;
         }
-        if(way == 0){
+        if(way == 1){
         switch(selectedMeasure){
             case 0:
                 id(whereTo).value = id(whereFrom).value * 0.65;
@@ -258,7 +258,7 @@
             id(whereTo).value = (id(whereFrom).value * 4.5) + " ·10²⁷"
         }   
     } 
-    if(way == 1){
+    if(way == 0){
         switch(selectedMeasure){
             case 0:
                 id(whereTo).value = id(whereFrom).value / 0.65;

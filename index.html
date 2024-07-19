@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://cdn.discordapp.com/emojis/1261447663363031090.webp?size=96&quality=lossless">
+    <title>Sorte</title>
+    <style>
+        html{
+            font-family: 'Roboto',sans-serif;
+            color: black;
+            
+        }
+        body{
+            margin: 0px;
+            padding: 0px;
+            font-size: 16px;
+            transition: ease-in-out 600ms;
+        }
+        .Header{
+            display: flex;
+            align-items: center;
+            height:2cm;
+            background-color: rgb(75, 2, 75);
+            width: 100%;
+            justify-content: space-between;
+            flex-direction: row;
+           
+        }
+        .tit-site
+        {
+            display: flex;
+            align-items: center;
+            font-size: 40px;
+            margin-left: 2%;
+           
+             
+        }
+        .tit{
+            
+            font-family:'Roboto',sans-serif;
+            color:#EEEFE1;
+                   
+        }
+
+        .selec{
+            margin-top: 0px;
+            margin-left: 0px;
+            width: 100%;
+            height: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            }
+        #selec{
+            margin-top: 5%;
+        }
+        .voltar{
+            display: none;            
+            margin-right: 20px;
+            height: 50%;
+            width: 70%;
+            border-radius: 20px;
+        }
+        .btnV{
+            display: flex;
+            
+        }
+        .voltar{
+            border: 0px solid;
+        }
+        .voltar:hover{
+            border: 1px solid;
+            color: crimson;
+        }
+        .dark-mode .voltar{
+            background-color: rgb(107, 107, 107);
+            
+        }
+        .icon{
+            margin-right: 5%;
+            height: 1em;
+            width: 1em;
+            transition: 600ms;
+            }
+        .icon:hover{
+            transform: rotate3d(0, 1, 0, 360deg);
+        }        
+        .interface{
+            margin-top: 2vw;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background-color: #AB85A9;
+            border-radius: 10px;
+            color: #FFF6FF;
+            width: 70%;
+
+        }
+        .break{
+            width: 100%;
+        }
+        .btn{
+            width: 45%;
+            height: 17vh;
+            margin: 10px;
+            border-radius: 20px;
+            border-width: 0px;
+            font-size: 2vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #E9EAF8;
+        }
+        .btn:hover{
+            background-color: #B7ACC3;
+            color: rgb(87, 87, 87);
+            border: 1px solid aqua;
+        }
+        input{
+            width: 45%;
+            height: 25px;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .menu{
+            display: flex; 
+            flex-wrap: wrap; 
+            flex-direction: row; 
+            justify-content: center; 
+            align-items: center;
+        }
+        .page{
+            display: none; 
+            flex-wrap: wrap; 
+            flex-direction: row; 
+            justify-content: center; 
+            align-items: center;
+        }
+        .btnV{
+            display: flex;
+            
+        }
+        .voltar{
+            border: 0px solid;
+        }
+        .voltar:hover{
+            border: 1px solid;
+            color: crimson;
+        }
+    </style>
+</head>
+<body>
+    <div class="Header" id="Header"><div class="tit-site"><img onclick="voltar()" class="icon" src="https://cdn.discordapp.com/emojis/1261447663363031090.webp?size=96&quality=lossless"><p onclick="voltar()" class="tit">Cathyverser </p> </div> <div class="btnV"><button class="voltar" id="voltar" onclick="voltar()">Back</button></div> </div>
+        <div class="selec">
+            <div class="interface" id="interface">
+                <div id="title"><h1 id="title-text">SI Units</h1></div>
+                <div class="break"></div>
+                    <div class="menu" id="menu">
+                        <button class="btn" id="0" onclick="setPage(0)">Second - Cathosecond</button><button class="btn" id="1" onclick="setPage(1)">Meter - Catherine</button>
+                        <div class="break"></div>
+                        <button class="btn" id="2" onclick="setPage(2)">Kilogram - Cathocram</button><button class="btn" id="3" onclick="setPage(3)">Ampere - Cathampere</button>
+                        <div class="break"></div>
+                        <button class="btn" id="4" onclick="setPage(4)">Kelvin - Cathenheit</button><button class="btn" id="5" onclick="setPage(5)">Candelas - Cathdelas</button>
+                        <div class="break"></div>
+                        <button class="btn" id="6" onclick="setPage(6)">Mole - Cole</button>
+                    </div>
+                    <div id="page" class="page">
+                        <input type="text" id="measure" placeholder="placeholder" oninput="convert(0)">
+                        <div class="break"></div>
+                        <h1>⇅</h1>
+                        <div class="break"></div>                       
+                        <input type="text" id="cathymeasure" placeholder="placeholder" oninput="convert(1)">
+                       
+                    </div>
+            </div>       
+        </div>
+   <script>
+    function id(idd){
+        getId = document.getElementById(idd);
+        return getId
+    }
+    var selectedMeasure = null;
+    function setPage(measure){
+        var title = id(measure).innerHTML;
+        selectedMeasure = measure;
+        var page  = id('page').style;
+        var menu = id('menu').style;
+        var volta = id('voltar').style;
+        var input1 = id('measure');
+        var input2 = id('cathymeasure');
+        var units = title.split('-');
+        var ogUnit = units[0];
+        var convUnit = units[1];
+        id('title-text').innerHTML = title;
+        input1.placeholder = ogUnit;
+        input2.placeholder = convUnit;
+        page.display = "flex";
+        menu.display = 'none';
+        volta.display = "block";
+    }
+    function voltar(){
+        var page  = document.getElementById('page').style;
+        var menu = document.getElementById('menu').style;
+        var volta = document.getElementById('voltar').style;
+        id('title-text').innerHTML = "SI Units";
+        id('cathymeasure').value = null;
+        id('measure').value = null;
+        page.display = "none";
+        menu.display = 'flex';
+        volta.display = "none";
+    }
+    function convert(whereFrom){
+        var whereTo;
+        var way;
+        if(whereFrom == 0){
+            whereTo = 'cathymeasure';
+            whereFrom = 'measure';
+            way = 0;
+        }
+        else{
+            whereTo = 'measure';
+            whereFrom = 'cathymeasure';
+            way = 1;
+        }
+        if(id(whereFrom).value == ""){
+            id(whereTo).value == null;
+        }
+        if(way == 0){
+        switch(selectedMeasure){
+            case 0:
+                id(whereTo).value = id(whereFrom).value * 0.65;
+                break;  
+            case 1:
+                id(whereTo).value = id(whereFrom).value * 1.5;
+                break;
+            case 2:
+                id(whereTo).value = id(whereFrom).value * 45;
+                break;
+            case 3:
+                id(whereTo).value = id(whereFrom).value * 33.75;
+                break;
+            case 4:
+                id(whereTo).value = id(whereFrom).value * 273.52;
+                break;
+            case 5:
+                id(whereTo).value = id(whereFrom).value * 107;
+                break;
+            case 6:
+            id(whereTo).value = (id(whereFrom).value * 4.5) + " ·10²⁷"
+        }   
+    } 
+    if(way == 1){
+        switch(selectedMeasure){
+            case 0:
+                id(whereTo).value = id(whereFrom).value / 0.65;
+                break;  
+            case 1:
+                id(whereTo).value = id(whereFrom).value / 1.5;
+                break;
+            case 2:
+                id(whereTo).value = id(whereFrom).value /  45;
+                break;
+            case 3:
+                id(whereTo).value = id(whereFrom).value / 33.75;
+                break;
+            case 4:
+                id(whereTo).value = id(whereFrom).value / 273.52;
+                break;
+            case 5:
+                id(whereTo).value = id(whereFrom).value / 107;
+                break;
+            case 6:
+                id(whereTo).value = (id(whereFrom).value / 4.5) + " ·10²⁷";
+                break;
+        }   
+    }
+        
+    }
+   </script>
+</body>
+</html> 
